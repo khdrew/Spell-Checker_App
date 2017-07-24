@@ -11,10 +11,28 @@ namespace MyCognitiveApp
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class HistoryPage : ContentPage
-	{
-		public HistoryPage ()
+	{        
+        Button historyButton = new Button
+        {
+            Text = "Look at History",
+            HorizontalOptions = LayoutOptions.FillAndExpand
+        };
+
+        public HistoryPage ()
 		{
-			InitializeComponent ();
-		}
-	}
+            InitializeComponent();
+            historyButton.Clicked += HistoryButtonClicked;
+            var layout = new StackLayout();
+                                    
+            layout.Children.Add(historyButton);
+            
+            Content = layout;
+        }
+
+        void HistoryButtonClicked(object sender, EventArgs e)
+        {
+            DisplayAlert("History", "SQL Post request", "OK");
+        }
+
+    }
 }

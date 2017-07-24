@@ -31,7 +31,7 @@ namespace MyCognitiveApp
 
         Label tempLabel = new Label
         {
-            Text = "0 button clicks",
+            Text = "0 checks",
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.CenterAndExpand
         };
@@ -43,7 +43,7 @@ namespace MyCognitiveApp
 			InitializeComponent ();
 
             var layout = new StackLayout();
-            checkButton.Clicked += OnButtonClicked;
+            checkButton.Clicked += CheckButtonClicked;
             var label = new Label
             {
                 Text = "Enter your text to be spell checked bellow.",
@@ -79,14 +79,14 @@ namespace MyCognitiveApp
             Content = layout;
         }
 
-        void OnButtonClicked(object sender, EventArgs e)
+        void CheckButtonClicked(object sender, EventArgs e)
         {
             clickTotal += 1;
-            tempLabel.Text = String.Format("{0} button click{1}",
-                            clickTotal, clickTotal == 1 ? "" : "s");
 
-            //var response = 
-            SendRequest(editor.Text);
+            tempLabel.Text = String.Format("{0} checks",
+                            clickTotal);
+
+            SendRequest(editor.Text);            
         }
 
         async void SendRequest(string text)
