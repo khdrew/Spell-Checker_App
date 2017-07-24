@@ -1,8 +1,6 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
-using System;
+﻿
+using Microsoft.WindowsAzure.MobileServices;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace msa_mod2
@@ -12,13 +10,20 @@ namespace msa_mod2
 
         private static AzureManager instance;
         private MobileServiceClient client;
-        private IMobileServiceTable<HistoryResultModel> wordTable;
+        private IMobileServiceTable<HistoryResultModel> historyTable;
 
         private AzureManager()
         {
             this.client = new MobileServiceClient("https://spellChecker2000.azurewebsites.net");
-            this.wordTable = this.client.GetTable<HistoryResultModel>();
+            this.historyTable = this.client.GetTable<HistoryResultModel>();
         }
+
+
+        public async Task PostHistoryInformation(HistoryResultModel historyResultModel)
+        {
+            await this.historyTable.InsertAsync(historyResultModel);
+        }
+
 
         public MobileServiceClient AzureClient
         {
@@ -40,12 +45,12 @@ namespace msa_mod2
 
         public async Task<List<HistoryResultModel>> GetWords()
         {
-            return await this.wordTable.ToListAsync();
+            return await this.historyTable.ToListAsync();
         }
 
         public async Task DeleteHistory(HistoryResultModel historyResultModel)
         {
-            await this.wordTable.DeleteAsync(historyResultModel);
+            await this.historyTable.DeleteAsync(historyResultModel);
         }
     }
 }

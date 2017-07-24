@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AECD5F64-0D6F-4378-8CD7-EA3FAE14E8F9}</ProjectGuid>
+    <ProjectGuid>{E3FECA31-0BA0-41C2-A534-6320706D8EDC}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -140,7 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\msa_mod2\msa_mod2.csproj">
-      <Project>{f9b97233-2f89-41db-b11a-bd27ecb3c238}</Project>
+      <Project>{d73aa4eb-ec78-4286-8095-bcac6c2e1c3e}</Project>
       <Name>msa_mod2</Name>
     </ProjectReference>
   </ItemGroup>

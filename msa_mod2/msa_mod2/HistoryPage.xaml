@@ -2,5 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="msa_mod2.HistoryPage"
-             Title="History">
+             Title="HistoryPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Button Text="Get History" Clicked="GetButtonClicked" />
+            <Button Text="Clear History" Clicked="ClearButtonClicked" />
+            <ListView x:Name="HistoryList" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding word, StringFormat='Word: {0:N}'}" HorizontalOptions="FillAndExpand" Margin="20,0,0,0" VerticalTextAlignment="Center" />
+                                <Label Text="{Binding date, StringFormat='{0:N}'}" VerticalTextAlignment="Center" Margin="0,0,20,0" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

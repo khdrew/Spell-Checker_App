@@ -17,6 +17,9 @@ namespace msa_mod2
         [JsonProperty(PropertyName = "id")]
         public string id { get; set; }
 
+        [JsonProperty(PropertyName = "updatedAt")]
+        public string updatedAt { get; set; }
+
         [JsonProperty(PropertyName = "word")]
         public string word { get; set; }
     }

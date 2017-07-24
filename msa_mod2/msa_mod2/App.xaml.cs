@@ -12,14 +12,11 @@ namespace msa_mod2
         public App()
         {
             InitializeComponent();
-
-            //MainPage = new msa_mod2.MainPage();
-            MainPage = new TabbedPage
-            {
+            MainPage = new TabbedPage {
                 Children =
                 {
                     new SpellCheckPage(),
-                    new HistoryPage()
+                    new HistoryPage()       
                 }
             };
         }

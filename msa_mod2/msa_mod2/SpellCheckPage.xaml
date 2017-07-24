@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:msa_mod2"
              x:Class="msa_mod2.SpellCheckPage"
              Title="Spell Check">
+
+    <StackLayout Padding="10" >
+        <Label Text="Spell Checker 2000" FontSize="40"/>
+        <Label Text="Please insert your text to be spell chcked below:" FontSize="20"/>
+        <Editor Text="Paste text here..." x:Name="checkEditor" HeightRequest="500"/>
+        <Button Text="Check Now" Clicked="CheckButtonClicked" />
+    </StackLayout>
+    
 </ContentPage>
