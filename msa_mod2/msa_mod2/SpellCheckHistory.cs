@@ -12,15 +12,15 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace msa_mod2
 {
-    public class HistoryResultModel
+
+    public class SpellCheckHistory
     {
-        [JsonProperty(PropertyName = "id")]
         public string id { get; set; }
-
-        [JsonProperty(PropertyName = "updatedAt")]
+        public string createdAt { get; set; }
         public string updatedAt { get; set; }
-
-        [JsonProperty(PropertyName = "word")]
+        public string version { get; set; }
+        public bool deleted { get; set; }
         public string word { get; set; }
+
     }
 }

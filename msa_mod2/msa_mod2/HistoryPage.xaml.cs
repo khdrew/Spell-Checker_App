@@ -12,6 +12,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace msa_mod2
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HistoryPage : ContentPage
     {
         MobileServiceClient client = AzureManager.AzureManagerInstance.AzureClient;
@@ -19,22 +20,36 @@ namespace msa_mod2
         public HistoryPage()
         {
             InitializeComponent();
+            init_page();
+        }
 
+        async void init_page()
+        {
+            List<SpellCheckHistory> info = await AzureManager.AzureManagerInstance.GetWords();
+            HistoryList.ItemsSource = info;
         }
         
-        private void ClearButtonClicked(object sender, EventArgs e)
+        async void ClearButtonClicked(object sender, EventArgs e)
         {
-
+            var answer = await DisplayAlert("WARNING", "Are you sure you want to clear your history?", "Yes", "No");
+            if (answer == true)
+            {
+                List<SpellCheckHistory> info = await AzureManager.AzureManagerInstance.GetWords();
+                foreach (SpellCheckHistory element in info)
+                {
+                    await AzureManager.AzureManagerInstance.DeleteHistory(element);
+                }
+                List<SpellCheckHistory> newInfo = await AzureManager.AzureManagerInstance.GetWords();
+                HistoryList.ItemsSource = newInfo;
+            }
         }
 
-        public async void GetButtonClicked(object sender, EventArgs e)
+        async void GetButtonClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("DEBUG", "Getting", "OK");
-            List<HistoryResultModel> info = await AzureManager.AzureManagerInstance.GetWords();
-            await DisplayAlert("DEBUG","Got info","OK");
+            List<SpellCheckHistory> info = await AzureManager.AzureManagerInstance.GetWords();
             HistoryList.ItemsSource = info;
-
-
+            await DisplayAlert("Results","History successfully obtained.","OK");
+            
         }
 
 

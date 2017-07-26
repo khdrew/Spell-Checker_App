@@ -42,7 +42,7 @@
     <Compile Include="HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HistoryResultModel.cs" />
+    <Compile Include="SpellCheckHistory.cs" />
     <Compile Include="SpellCheckModel.cs" />
     <Compile Include="SpellCheckPage.xaml.cs">
       <DependentUpon>SpellCheckPage.xaml</DependentUpon>

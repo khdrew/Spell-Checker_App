@@ -13,8 +13,6 @@ namespace msa_mod2
 {
     public partial class SpellCheckPage : ContentPage
     {
-        private String outWord;
-
         public SpellCheckPage()
         {
             InitializeComponent();
@@ -26,9 +24,9 @@ namespace msa_mod2
         }
 
         
-        public async Task postHistoryAsync(String s)
+        async Task postHistoryAsync(String s)
         {
-            HistoryResultModel model = new HistoryResultModel()
+            SpellCheckHistory model = new SpellCheckHistory()
             {
                 word = s
             };
@@ -38,7 +36,7 @@ namespace msa_mod2
 
 
 
-        async void SendRequest(string text)
+        private async void SendRequest(string text)
         {
             string apiUrl = "https://api.cognitive.microsoft.com/bing/v5.0/spellcheck/?";
             string apiKey = "9c087ee817c14ef3aa4c710d4081137e";
@@ -53,13 +51,12 @@ namespace msa_mod2
                 var spellResults = JsonConvert.DeserializeObject<SpellCheckModel>(responseString);
 
                 int numWrong = 0;
-                string outResString = "";
+                string outResString = "\n";
                 foreach (var flaggedToken in spellResults.FlaggedTokens)
                 {
                     numWrong += 1;
                     outResString += "Incorrect: " + flaggedToken.Token + "\nSuggested Fix: " + flaggedToken.Suggestions.FirstOrDefault().Suggestion;
-               
-                    outResString += "\n";
+                    outResString += "\n\n";
 
                 }
                 if (numWrong == 0)
@@ -69,7 +66,7 @@ namespace msa_mod2
                 else
                 {
                     await DisplayAlert("Results", outResString, "OK");
-                    outWord = outResString;
+                    await postHistoryAsync(outResString);
                 }
 
             }

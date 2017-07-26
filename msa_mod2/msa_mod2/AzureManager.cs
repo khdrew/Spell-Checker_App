@@ -10,20 +10,14 @@ namespace msa_mod2
 
         private static AzureManager instance;
         private MobileServiceClient client;
-        private IMobileServiceTable<HistoryResultModel> historyTable;
+        private IMobileServiceTable<SpellCheckHistory> historyTable;
 
         private AzureManager()
         {
             this.client = new MobileServiceClient("https://spellChecker2000.azurewebsites.net");
-            this.historyTable = this.client.GetTable<HistoryResultModel>();
+            this.historyTable = this.client.GetTable<SpellCheckHistory>();
         }
-
-
-        public async Task PostHistoryInformation(HistoryResultModel historyResultModel)
-        {
-            await this.historyTable.InsertAsync(historyResultModel);
-        }
-
+        
 
         public MobileServiceClient AzureClient
         {
@@ -43,12 +37,18 @@ namespace msa_mod2
             }
         }
 
-        public async Task<List<HistoryResultModel>> GetWords()
+        public async Task<List<SpellCheckHistory>> GetWords()
         {
             return await this.historyTable.ToListAsync();
         }
 
-        public async Task DeleteHistory(HistoryResultModel historyResultModel)
+        public async Task PostHistoryInformation(SpellCheckHistory historyResultModel)
+        {
+
+            await this.historyTable.InsertAsync(historyResultModel);
+        }
+
+        public async Task DeleteHistory(SpellCheckHistory historyResultModel)
         {
             await this.historyTable.DeleteAsync(historyResultModel);
         }

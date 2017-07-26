@@ -5,7 +5,7 @@
              Title="HistoryPage">
     <ScrollView>
         <StackLayout Padding="10">
-            <Button Text="Get History" Clicked="GetButtonClicked" />
+            <Button Text="Refresh History" Clicked="GetButtonClicked" />
             <Button Text="Clear History" Clicked="ClearButtonClicked" />
             <ListView x:Name="HistoryList" HasUnevenRows="True">
                 <ListView.ItemTemplate>
